@@ -13,8 +13,7 @@ services:
       - BPL_JVM_THREAD_COUNT=50               
       - BPL_DEBUG_ENABLED=true
       - BPL_DEBUG_PORT=8001
-      - SPRING_DATASOURCE_URL=
-➥jdbc:postgresql://polar-postgres:5432/polardb_catalog
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog
       - SPRING_PROFILES_ACTIVE=testdata    
  
   polar-postgres: 
@@ -25,4 +24,5 @@ services:
     environment:
       - POSTGRES_USER=myprojectuser
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=polardb_catalog
+    volumes:
+      - ./postgresql/init.sql:/docker-entrypoint-initd-b.d/init.sql
